@@ -1,0 +1,393 @@
+﻿using BillingSoftware.Helpers;
+using BillingSoftware.Model;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using System.Collections.Generic;
+using System.Data;
+using System;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+
+namespace BillingSoftware.Controllers
+{
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class ThirdPartyPurchaseController : ControllerBase
+    {
+        private readonly IOptions<DBModel> appSettings;
+
+        public IConfiguration Configuration { get; }
+        string Conn = string.Empty;
+
+        public ThirdPartyPurchaseController(IConfiguration configuration, IOptions<DBModel> appSettings)
+        {
+            Configuration = configuration;
+            Conn = new Database().GetConnectionString();
+        }
+
+        [HttpGet]
+        public List<ThirdPartyPurchaseModel> get_Maxid_third_party_purchase(int companyid)
+        {
+            DataTable dtData = null;
+            List<ThirdPartyPurchaseModel> mItems = new List<ThirdPartyPurchaseModel>();
+            SqlDataAdapter adapter = null;
+            string jsonData = string.Empty;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Conn))
+                {
+                    SqlCommand cmd = new SqlCommand("get_Maxid_third_party_purchase", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@companyid", companyid);
+                    con.Open();
+                    adapter = new SqlDataAdapter(cmd);
+                    dtData = new DataTable();
+                    adapter.Fill(dtData);
+                    if (dtData.Rows.Count > 0)
+                    {
+                        mItems = Helper.ConvertToList<ThirdPartyPurchaseModel>(dtData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return mItems;
+        }
+
+        [HttpGet]
+        public List<ThirdPartyPurchaseModel> get_SiCode_third_party_purchase(int companyid)
+        {
+            DataTable dtData = null;
+            List<ThirdPartyPurchaseModel> mItems = new List<ThirdPartyPurchaseModel>();
+            SqlDataAdapter adapter = null;
+            string jsonData = string.Empty;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Conn))
+                {
+                    SqlCommand cmd = new SqlCommand("get_SiCode_third_party_purchase", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@companyid", companyid);                    
+                    con.Open();
+                    adapter = new SqlDataAdapter(cmd);
+                    dtData = new DataTable();
+                    adapter.Fill(dtData);
+                    if (dtData.Rows.Count > 0)
+                    {
+                        mItems = Helper.ConvertToList<ThirdPartyPurchaseModel>(dtData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return mItems;
+        }
+
+        [HttpGet]
+        public List<ThirdPartyPurchaseModel> get_RefCode_third_party_purchase(int companyid,int third_partyid)
+        {
+            DataTable dtData = null;
+            List<ThirdPartyPurchaseModel> mItems = new List<ThirdPartyPurchaseModel>();
+            SqlDataAdapter adapter = null;
+            string jsonData = string.Empty;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Conn))
+                {
+                    SqlCommand cmd = new SqlCommand("get_RefCode_third_party_purchase", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@companyid", companyid);
+                    cmd.Parameters.AddWithValue("@third_partyid", third_partyid);
+                    con.Open();
+                    adapter = new SqlDataAdapter(cmd);
+                    dtData = new DataTable();
+                    adapter.Fill(dtData);
+                    if (dtData.Rows.Count > 0)
+                    {
+                        mItems = Helper.ConvertToList<ThirdPartyPurchaseModel>(dtData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return mItems;
+        }
+
+        [HttpGet]
+        public List<ThirdPartyPurchaseModel> get_third_party_purchase(int companyid, string date)
+        {
+            DataTable dtData = null;
+            List<ThirdPartyPurchaseModel> mItems = new List<ThirdPartyPurchaseModel>();
+            SqlDataAdapter adapter = null;
+            string jsonData = string.Empty;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Conn))
+                {
+                    SqlCommand cmd = new SqlCommand("get_third_party_purchase", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@companyid", companyid);
+                    cmd.Parameters.AddWithValue("@date", date);
+                    con.Open();
+                    adapter = new SqlDataAdapter(cmd);
+                    dtData = new DataTable();
+                    adapter.Fill(dtData);
+                    if (dtData.Rows.Count > 0)
+                    {
+                        mItems = Helper.ConvertToList<ThirdPartyPurchaseModel>(dtData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return mItems;
+        }
+
+        [HttpGet]
+        public List<ThirdPartyPurchaseNestedModel> get_third_party_purchase_nested(int purchaseid)
+        {
+            DataTable dtData = null;
+            List<ThirdPartyPurchaseNestedModel> mItems = new List<ThirdPartyPurchaseNestedModel>();
+            SqlDataAdapter adapter = null;
+            string jsonData = string.Empty;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Conn))
+                {
+                    SqlCommand cmd = new SqlCommand("get_third_party_purchase_nested", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@purchaseid", purchaseid);
+                    con.Open();
+                    adapter = new SqlDataAdapter(cmd);
+                    dtData = new DataTable();
+                    adapter.Fill(dtData);
+                    if (dtData.Rows.Count > 0)
+                    {
+                        mItems = Helper.ConvertToList<ThirdPartyPurchaseNestedModel>(dtData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return mItems;
+        }
+
+
+        [HttpPost]
+        [ActionName("Insert_third_party_purchase")]
+        public ResponseModel Insert_third_party_purchase(ThirdPartyPurchaseModel newMat)
+        {
+            ResponseModel objmodel = new ResponseModel();
+            string errorDesc = string.Empty;
+            string errorCode = string.Empty;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Conn))
+                {
+                    SqlParameter outErrorCode = new SqlParameter("@o_ErrorCode", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                    SqlParameter outErrorDesc = new SqlParameter("@o_ErrorDescription", SqlDbType.VarChar, 5000) { Direction = ParameterDirection.Output };
+                    if (newMat.purchaseid > 0)
+                    {
+                        SqlCommand cmd = new SqlCommand("Update_third_party_purchase", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@purchaseid", newMat.purchaseid);
+                        cmd.Parameters.AddWithValue("@third_partyid", newMat.third_partyid);
+                        cmd.Parameters.AddWithValue("@date", newMat.date);
+                        cmd.Parameters.AddWithValue("@invoice_no", newMat.invoice_no);
+                        cmd.Parameters.AddWithValue("@bill_no", newMat.bill_no);
+                        cmd.Parameters.AddWithValue("@c_balance", newMat.c_balance);
+                        cmd.Parameters.AddWithValue("@credit_days", newMat.credit_days);
+                        cmd.Parameters.AddWithValue("@total", newMat.total);
+                        cmd.Parameters.AddWithValue("@cuid", newMat.cuid);
+                        cmd.Parameters.Add(outErrorCode);
+                        cmd.Parameters.Add(outErrorDesc);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        errorCode = outErrorCode.Value.ToString();
+                        errorDesc = outErrorDesc.Value.ToString();
+                        objmodel.status = errorDesc;
+                        objmodel.recordid = Convert.ToInt32(newMat.purchaseid);
+                        if (objmodel.status == "Saved successfully")
+                        {
+                            foreach (var assign in newMat.thirdparty_nested)
+                            {
+                                using (SqlConnection con11 = new SqlConnection(Conn))
+                                {
+                                    if (assign.purchase_n_id > 0)
+                                    {
+                                        SqlCommand cmd1 = new SqlCommand("Update_third_party_purchase_nested", con11);
+                                        cmd1.CommandType = CommandType.StoredProcedure;
+                                        cmd1.Parameters.AddWithValue("@purchaseid", newMat.purchaseid);
+                                        cmd1.Parameters.AddWithValue("@purchase_n_id", assign.purchase_n_id);
+                                        cmd1.Parameters.AddWithValue("@date", newMat.date);
+                                        cmd1.Parameters.AddWithValue("@si_code", assign.si_code);
+                                        cmd1.Parameters.AddWithValue("@ref_code", assign.ref_code);
+                                        cmd1.Parameters.AddWithValue("@brandid", assign.brandid);
+                                        cmd1.Parameters.AddWithValue("@itemid", assign.itemid);
+                                        cmd1.Parameters.AddWithValue("@hsn_number", assign.hsn_number);
+                                        cmd1.Parameters.AddWithValue("@price", assign.price);
+                                        cmd1.Parameters.AddWithValue("@discount", assign.discount);
+                                        cmd1.Parameters.AddWithValue("@qty", assign.qty);
+                                        cmd1.Parameters.AddWithValue("@total", assign.total);
+                                        cmd1.Parameters.AddWithValue("@companyid", newMat.companyid);
+                                        con11.Open();
+                                        cmd1.ExecuteNonQuery();
+                                    }
+                                    else
+                                    {
+                                        SqlCommand cmd1 = new SqlCommand("Insert_thirthird_party_purchase_nested", con11);
+                                        cmd1.CommandType = CommandType.StoredProcedure;
+                                        cmd1.Parameters.AddWithValue("@purchaseid", objmodel.recordid);
+                                        cmd1.Parameters.AddWithValue("@date", newMat.date);
+                                        cmd1.Parameters.AddWithValue("@si_code", assign.si_code);
+                                        cmd1.Parameters.AddWithValue("@ref_code", assign.ref_code);
+                                        cmd1.Parameters.AddWithValue("@brandid", assign.brandid);
+                                        cmd1.Parameters.AddWithValue("@itemid", assign.itemid);
+                                        cmd1.Parameters.AddWithValue("@hsn_number", assign.hsn_number);
+                                        cmd1.Parameters.AddWithValue("@price", assign.price);
+                                        cmd1.Parameters.AddWithValue("@discount", assign.discount);
+                                        cmd1.Parameters.AddWithValue("@qty", assign.qty);
+                                        cmd1.Parameters.AddWithValue("@total", assign.total);
+                                        cmd1.Parameters.AddWithValue("@companyid", newMat.companyid);
+                                        con11.Open();
+                                        cmd1.ExecuteNonQuery();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    else
+                    {
+                        SqlCommand cmd = new SqlCommand("Insert_third_party_purchase", con);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@third_partyid", newMat.third_partyid);
+                        cmd.Parameters.AddWithValue("@date", newMat.date);
+                        cmd.Parameters.AddWithValue("@invoice_no", newMat.invoice_no);
+                        cmd.Parameters.AddWithValue("@bill_no", newMat.bill_no);
+                        cmd.Parameters.AddWithValue("@c_balance", newMat.c_balance);
+                        cmd.Parameters.AddWithValue("@credit_days", newMat.credit_days);
+                        cmd.Parameters.AddWithValue("@total", newMat.total);
+                        cmd.Parameters.AddWithValue("@companyid", newMat.companyid);
+                        cmd.Parameters.AddWithValue("@cuid", newMat.cuid);                        
+                        cmd.Parameters.Add(outErrorCode);
+                        cmd.Parameters.Add(outErrorDesc);
+                        con.Open();
+                        cmd.ExecuteNonQuery();
+                        errorCode = outErrorCode.Value.ToString();
+                        errorDesc = outErrorDesc.Value.ToString();
+                        objmodel.status = errorDesc;
+                        objmodel.recordid = Convert.ToInt32(errorCode);
+                        if (objmodel.status == "Saved successfully")
+                        {
+                            foreach (var assign in newMat.thirdparty_nested)
+                            {
+                                using (SqlConnection con11 = new SqlConnection(Conn))
+                                {
+                                    SqlCommand cmd1 = new SqlCommand("Insert_thirthird_party_purchase_nested", con11);
+                                    cmd1.CommandType = CommandType.StoredProcedure;
+                                    cmd1.Parameters.AddWithValue("@purchaseid", objmodel.recordid);
+                                    cmd1.Parameters.AddWithValue("@date", newMat.date);
+                                    cmd1.Parameters.AddWithValue("@si_code", assign.si_code);
+                                    cmd1.Parameters.AddWithValue("@ref_code", assign.ref_code);
+                                    cmd1.Parameters.AddWithValue("@brandid", assign.brandid);
+                                    cmd1.Parameters.AddWithValue("@itemid", assign.itemid);
+                                    cmd1.Parameters.AddWithValue("@hsn_number", assign.hsn_number);                                    
+                                    cmd1.Parameters.AddWithValue("@price", assign.price);
+                                    cmd1.Parameters.AddWithValue("@discount", assign.discount);
+                                    cmd1.Parameters.AddWithValue("@qty", assign.qty);
+                                    cmd1.Parameters.AddWithValue("@total", assign.total);
+                                    cmd1.Parameters.AddWithValue("@companyid", newMat.companyid);
+                                    con11.Open();
+                                    cmd1.ExecuteNonQuery();
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                objmodel.Errormessg = ex.Message;
+            }
+            return objmodel;
+        }
+
+        [HttpGet]
+        public List<StockTableModel> get_thirdPartyNongst_Purchase_report_bill(int purchaseid)
+        {
+            DataTable dtData = null;
+            List<StockTableModel> mItems = new List<StockTableModel>();
+            SqlDataAdapter adapter = null;
+            string jsonData = string.Empty;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Conn))
+                {
+                    SqlCommand cmd = new SqlCommand("get_thirdPartyNongst_Purchase_report_bill", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@purchaseid", purchaseid);
+                    con.Open();
+                    adapter = new SqlDataAdapter(cmd);
+                    dtData = new DataTable();
+                    adapter.Fill(dtData);
+                    if (dtData.Rows.Count > 0)
+                    {
+                        mItems = Helper.ConvertToList<StockTableModel>(dtData);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return mItems;
+        }
+
+
+        [HttpDelete]
+        [ActionName("delete_third_party_purchase")]
+        public ResponseModel delete_third_party_purchase(int purchaseid)
+        {
+            ResponseModel objmodel = new ResponseModel();
+            string errorDesc = string.Empty;
+            string errorCode = string.Empty;
+            try
+            {
+                using (SqlConnection con = new SqlConnection(Conn))
+                {
+                    SqlParameter outErrorCode = new SqlParameter("@o_ErrorCode", SqlDbType.Int) { Direction = ParameterDirection.Output };
+                    SqlParameter outErrorDesc = new SqlParameter("@o_ErrorDescription", SqlDbType.VarChar, 5000) { Direction = ParameterDirection.Output };
+
+                    SqlCommand cmd = new SqlCommand("delete_third_party_purchase", con);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@purchaseid", purchaseid);
+                    cmd.Parameters.Add(outErrorCode);
+                    cmd.Parameters.Add(outErrorDesc);
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    errorCode = outErrorCode.Value.ToString();
+                    errorDesc = outErrorDesc.Value.ToString();
+                    objmodel.status = errorDesc;
+                    objmodel.recordid = Convert.ToInt32(purchaseid);
+                }
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return objmodel;
+        }
+    }
+}
