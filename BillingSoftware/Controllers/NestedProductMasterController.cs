@@ -74,6 +74,8 @@ namespace BillingSoftware.Controllers
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@n_productid", newObj.n_productid);
                         cmd.Parameters.AddWithValue("@n_product_name", newObj.n_product_name);
+                        cmd.Parameters.AddWithValue("@unitid", newObj.unitid);
+                        cmd.Parameters.AddWithValue("@item_groupid", newObj.item_groupid);
                         cmd.Parameters.AddWithValue("@companyid", newObj.companyid);
                         cmd.Parameters.AddWithValue("@cuid", newObj.cuid);
                         cmd.Parameters.Add(outErrorCode);
@@ -90,6 +92,8 @@ namespace BillingSoftware.Controllers
                         SqlCommand cmd = new SqlCommand("Insert_nested_product_master", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@n_product_name", newObj.n_product_name);
+                        cmd.Parameters.AddWithValue("@unitid", newObj.unitid);
+                        cmd.Parameters.AddWithValue("@item_groupid", newObj.item_groupid);
                         cmd.Parameters.AddWithValue("@companyid", newObj.companyid);
                         cmd.Parameters.AddWithValue("@cuid", newObj.cuid);
                         cmd.Parameters.Add(outErrorCode);
