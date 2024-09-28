@@ -37,7 +37,7 @@ namespace BillingSoftware
                 });
             });
 
-            services.AddCors(options => options.AddDefaultPolicy(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod()));
+            services.AddCors(options => options.AddDefaultPolicy(builder => builder.WithOrigins("*").AllowAnyHeader().AllowAnyMethod()));
             var key = Encoding.ASCII.GetBytes("veryverysceret.....");
             
             services.AddAuthentication(options =>
