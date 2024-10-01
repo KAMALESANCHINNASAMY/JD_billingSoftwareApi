@@ -4,6 +4,7 @@
     {
         public int productid { get; set; }
         public string product_name { get; set; }
+        public string price { get; set; }
         public int unitid { get; set; }
         public int item_groupid { get; set; }
         public int companyid { get; set; }

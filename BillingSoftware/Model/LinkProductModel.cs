@@ -18,6 +18,6 @@ namespace BillingSoftware.Model
         public int link_n_id { get; set; }
         public int linkid { get; set;}
         public int n_productid { get; set; }
-        public string qty { get; set;}
+        public string a_qty { get; set;}
     }
 }

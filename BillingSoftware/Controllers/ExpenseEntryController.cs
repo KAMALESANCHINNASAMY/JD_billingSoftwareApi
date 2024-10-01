@@ -25,7 +25,7 @@ namespace BillingSoftware.Controllers
         }
 
         [HttpGet]
-        public List<ExpenseEntryModel> get_expense_entry(int companyid)
+        public List<ExpenseEntryModel> get_expense_entry(int companyid,string date)
         {
             DataTable dtData = null;
             List<ExpenseEntryModel> mItems = new List<ExpenseEntryModel>();
@@ -38,6 +38,7 @@ namespace BillingSoftware.Controllers
                     SqlCommand cmd = new SqlCommand("get_expense_entry", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@companyid", companyid);
+                    cmd.Parameters.AddWithValue("@date", date);
                     con.Open();
                     adapter = new SqlDataAdapter(cmd);
                     dtData = new DataTable();
@@ -82,6 +83,8 @@ namespace BillingSoftware.Controllers
                             cmd.Parameters.AddWithValue("@description", newObj.description);
                             cmd.Parameters.AddWithValue("@issale_am", newObj.issale_am);
                             cmd.Parameters.AddWithValue("@ishand_cash_am", newObj.ishand_cash_am);
+                            cmd.Parameters.AddWithValue("@isbank_am", newObj.isbank_am);
+                            cmd.Parameters.AddWithValue("@bankid", newObj.bankid);
                             cmd.Parameters.AddWithValue("@companyid", newObj.companyid);
                             cmd.Parameters.AddWithValue("@cuid", newObj.cuid);
                             cmd.Parameters.Add(outErrorCode);
@@ -103,6 +106,8 @@ namespace BillingSoftware.Controllers
                             cmd.Parameters.AddWithValue("@description", newObj.description);
                             cmd.Parameters.AddWithValue("@issale_am", newObj.issale_am);
                             cmd.Parameters.AddWithValue("@ishand_cash_am", newObj.ishand_cash_am);
+                            cmd.Parameters.AddWithValue("@isbank_am", newObj.isbank_am);
+                            cmd.Parameters.AddWithValue("@bankid", newObj.bankid);
                             cmd.Parameters.AddWithValue("@companyid", newObj.companyid);
                             cmd.Parameters.AddWithValue("@cuid", newObj.cuid);
                             cmd.Parameters.Add(outErrorCode);

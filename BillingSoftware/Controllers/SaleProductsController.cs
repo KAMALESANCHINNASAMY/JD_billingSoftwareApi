@@ -165,6 +165,7 @@ namespace BillingSoftware.Controllers
                                     cmd1.Parameters.AddWithValue("@discount", assign.discount);
                                     cmd1.Parameters.AddWithValue("@qty", assign.qty);
                                     cmd1.Parameters.AddWithValue("@total", assign.total);
+                                    cmd1.Parameters.AddWithValue("@re_amount", assign.re_amount);
                                     cmd1.Parameters.AddWithValue("@cgst_amount", assign.cgst_amount);
                                     cmd1.Parameters.AddWithValue("@sgst_amount", assign.sgst_amount);
                                     cmd1.Parameters.AddWithValue("@igst_amount", assign.igst_amount);
@@ -209,6 +210,7 @@ namespace BillingSoftware.Controllers
                                     cmd1.Parameters.AddWithValue("@discount", assign.discount);
                                     cmd1.Parameters.AddWithValue("@qty", assign.qty);
                                     cmd1.Parameters.AddWithValue("@total", assign.total);
+                                    cmd1.Parameters.AddWithValue("@re_amount", assign.re_amount);
                                     cmd1.Parameters.AddWithValue("@cgst_amount", assign.cgst_amount);
                                     cmd1.Parameters.AddWithValue("@sgst_amount", assign.sgst_amount);
                                     cmd1.Parameters.AddWithValue("@igst_amount", assign.igst_amount);

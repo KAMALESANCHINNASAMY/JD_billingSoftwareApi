@@ -105,7 +105,8 @@ namespace BillingSoftware.Controllers
                         SqlCommand cmd = new SqlCommand("Update_link_product", con);
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@linkid", newMat.linkid);
-                        cmd.Parameters.AddWithValue("@productid", newMat.productid);                      
+                        cmd.Parameters.AddWithValue("@productid", newMat.productid);
+                        cmd.Parameters.AddWithValue("@companyid", newMat.companyid);
                         cmd.Parameters.AddWithValue("@cuid", newMat.cuid);
                         cmd.Parameters.Add(outErrorCode);
                         cmd.Parameters.Add(outErrorDesc);
@@ -125,7 +126,7 @@ namespace BillingSoftware.Controllers
                                     cmd1.CommandType = CommandType.StoredProcedure;
                                     cmd1.Parameters.AddWithValue("@linkid", newMat.linkid);
                                     cmd1.Parameters.AddWithValue("@n_productid", assign.n_productid);
-                                    cmd1.Parameters.AddWithValue("@qty", assign.qty);
+                                    cmd1.Parameters.AddWithValue("@a_qty", assign.a_qty);
                                     con11.Open();
                                     cmd1.ExecuteNonQuery();
                                 }
@@ -157,7 +158,7 @@ namespace BillingSoftware.Controllers
                                     cmd1.CommandType = CommandType.StoredProcedure;
                                     cmd1.Parameters.AddWithValue("@linkid", objmodel.recordid);
                                     cmd1.Parameters.AddWithValue("@n_productid", assign.n_productid);
-                                    cmd1.Parameters.AddWithValue("@qty", assign.qty);
+                                    cmd1.Parameters.AddWithValue("@a_qty", assign.a_qty);
                                     con11.Open();
                                     cmd1.ExecuteNonQuery();
                                 }

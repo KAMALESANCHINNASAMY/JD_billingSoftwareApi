@@ -13,29 +13,29 @@ namespace BillingSoftware.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class NestedProductMasterController : ControllerBase
+    public class BankMasterController : ControllerBase
     {
         private readonly IOptions<DBModel> appSettings;
         public IConfiguration Configuration { get; }
         string Conn = string.Empty;
-        public NestedProductMasterController(IConfiguration configuration, IOptions<DBModel> appSettings)
+        public BankMasterController(IConfiguration configuration, IOptions<DBModel> appSettings)
         {
             Configuration = configuration;
             Conn = new Database().GetConnectionString();
         }
 
         [HttpGet]
-        public List<NestedProductModel> get_nested_product_master(int companyid)
+        public List<BankModel> get_bank_master(int companyid)
         {
             DataTable dtData = null;
-            List<NestedProductModel> mItems = new List<NestedProductModel>();
+            List<BankModel> mItems = new List<BankModel>();
             SqlDataAdapter adapter = null;
             string jsonData = string.Empty;
             try
             {
                 using (SqlConnection con = new SqlConnection(Conn))
                 {
-                    SqlCommand cmd = new SqlCommand("get_nested_product_master", con);
+                    SqlCommand cmd = new SqlCommand("get_bank_master", con);
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@companyid", companyid);
                     con.Open();
@@ -44,7 +44,7 @@ namespace BillingSoftware.Controllers
                     adapter.Fill(dtData);
                     if (dtData.Rows.Count > 0)
                     {
-                        mItems = Helper.ConvertToList<NestedProductModel>(dtData);
+                        mItems = Helper.ConvertToList<BankModel>(dtData);
                     }
                 }
             }
@@ -56,8 +56,8 @@ namespace BillingSoftware.Controllers
         }
 
         [HttpPost]
-        [ActionName("Insert_nested_product_master")]
-        public ResponseModel Insert_nested_product_master(NestedProductModel newObj)
+        [ActionName("Insert_bank_master")]
+        public ResponseModel Insert_bank_master(BankModel newObj)
         {
             ResponseModel objmodel = new ResponseModel();
             string errorDesc = string.Empty;
@@ -68,15 +68,15 @@ namespace BillingSoftware.Controllers
                 {
                     SqlParameter outErrorCode = new SqlParameter("@o_ErrorCode", SqlDbType.Int) { Direction = ParameterDirection.Output };
                     SqlParameter outErrorDesc = new SqlParameter("@o_ErrorDescription", SqlDbType.VarChar, 5000) { Direction = ParameterDirection.Output };
-                    if (newObj.n_productid > 0)
+                    if (newObj.bankid > 0)
                     {
-                        SqlCommand cmd = new SqlCommand("Update_nested_product_master", con);
+                        SqlCommand cmd = new SqlCommand("Update_bank_master", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@n_productid", newObj.n_productid);
-                        cmd.Parameters.AddWithValue("@n_product_name", newObj.n_product_name);
-                        cmd.Parameters.AddWithValue("@price", newObj.price);
-                        cmd.Parameters.AddWithValue("@unitid", newObj.unitid);
-                        cmd.Parameters.AddWithValue("@item_groupid", newObj.item_groupid);
+                        cmd.Parameters.AddWithValue("@bankid", newObj.bankid);
+                        cmd.Parameters.AddWithValue("@bank_name", newObj.bank_name);
+                        cmd.Parameters.AddWithValue("@ac_holder_name", newObj.ac_holder_name);
+                        cmd.Parameters.AddWithValue("@ac_no", newObj.ac_no);
+                        cmd.Parameters.AddWithValue("@ifsc_code", newObj.ifsc_code);
                         cmd.Parameters.AddWithValue("@companyid", newObj.companyid);
                         cmd.Parameters.AddWithValue("@cuid", newObj.cuid);
                         cmd.Parameters.Add(outErrorCode);
@@ -86,16 +86,16 @@ namespace BillingSoftware.Controllers
                         errorCode = outErrorCode.Value.ToString();
                         errorDesc = outErrorDesc.Value.ToString();
                         objmodel.status = errorDesc;
-                        objmodel.recordid = Convert.ToInt32(newObj.n_productid);
+                        objmodel.recordid = Convert.ToInt32(newObj.bankid);
                     }
                     else
                     {
-                        SqlCommand cmd = new SqlCommand("Insert_nested_product_master", con);
+                        SqlCommand cmd = new SqlCommand("Insert_bank_master", con);
                         cmd.CommandType = CommandType.StoredProcedure;
-                        cmd.Parameters.AddWithValue("@n_product_name", newObj.n_product_name);
-                        cmd.Parameters.AddWithValue("@price", newObj.price);
-                        cmd.Parameters.AddWithValue("@unitid", newObj.unitid);
-                        cmd.Parameters.AddWithValue("@item_groupid", newObj.item_groupid);
+                        cmd.Parameters.AddWithValue("@bank_name", newObj.bank_name);
+                        cmd.Parameters.AddWithValue("@ac_holder_name", newObj.ac_holder_name);
+                        cmd.Parameters.AddWithValue("@ac_no", newObj.ac_no);
+                        cmd.Parameters.AddWithValue("@ifsc_code", newObj.ifsc_code);
                         cmd.Parameters.AddWithValue("@companyid", newObj.companyid);
                         cmd.Parameters.AddWithValue("@cuid", newObj.cuid);
                         cmd.Parameters.Add(outErrorCode);
@@ -116,9 +116,10 @@ namespace BillingSoftware.Controllers
             return objmodel;
         }
 
+
         [HttpDelete]
-        [ActionName("Delete_nested_product_master")]
-        public ResponseModel Delete_nested_product_master(int n_productid)
+        [ActionName("Delete_bank_master")]
+        public ResponseModel Delete_bank_master(int bankid)
         {
             ResponseModel objmodel = new ResponseModel();
             string errorDesc = string.Empty;
@@ -130,9 +131,9 @@ namespace BillingSoftware.Controllers
                     SqlParameter outErrorCode = new SqlParameter("@o_ErrorCode", SqlDbType.Int) { Direction = ParameterDirection.Output };
                     SqlParameter outErrorDesc = new SqlParameter("@o_ErrorDescription", SqlDbType.VarChar, 5000) { Direction = ParameterDirection.Output };
 
-                    SqlCommand cmd = new SqlCommand("Delete_nested_product_master", con);
+                    SqlCommand cmd = new SqlCommand("Delete_bank_master", con);
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@n_productid", n_productid);
+                    cmd.Parameters.AddWithValue("@bankid", bankid);
                     cmd.Parameters.Add(outErrorCode);
                     cmd.Parameters.Add(outErrorDesc);
                     con.Open();
@@ -140,7 +141,7 @@ namespace BillingSoftware.Controllers
                     errorCode = outErrorCode.Value.ToString();
                     errorDesc = outErrorDesc.Value.ToString();
                     objmodel.status = errorDesc;
-                    objmodel.recordid = Convert.ToInt32(n_productid);
+                    objmodel.recordid = Convert.ToInt32(bankid);
                 }
             }
             catch (Exception ex)

@@ -26,6 +26,7 @@ namespace BillingSoftware.Model
         public string discount { get; set; }
         public string qty { get; set; }
         public string total { get; set; }
+        public string re_amount { get; set; }
         public string cgst_amount { get; set; }
         public string sgst_amount { get; set; }
         public string igst_amount { get; set; }
