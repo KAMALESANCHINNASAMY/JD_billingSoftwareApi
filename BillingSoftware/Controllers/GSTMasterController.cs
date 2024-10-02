@@ -32,12 +32,10 @@ namespace BillingSoftware.Controllers
 
         public List<GSTMasterModel> get(int companyid)
         {
-
             DataTable dtData = null;
             List<GSTMasterModel> mItems = new List<GSTMasterModel>();
             SqlDataAdapter adapter = null;
             string jsonData = string.Empty;
-
             try
             {
                 using (SqlConnection con = new SqlConnection(Conn))
@@ -61,11 +59,10 @@ namespace BillingSoftware.Controllers
 
             }
             return mItems;
-
         }
+
         [HttpPost]
         [ActionName("Insert_gst_master")]
-
         public ResponseModel Insert_gst_master(GSTMasterModel newGst)
         {
             ResponseModel objmodel = new ResponseModel();
@@ -101,7 +98,6 @@ namespace BillingSoftware.Controllers
                         objmodel.status = errorDesc;
                         objmodel.recordid = Convert.ToInt32(newGst.gstid);
                     }
-
                     else
                     {
                         SqlCommand cmd = new SqlCommand("Insert_gst_master", con);
@@ -122,14 +118,11 @@ namespace BillingSoftware.Controllers
                         //objmodel = new ResponseModel();
                         objmodel.status = errorDesc;
                         objmodel.recordid = Convert.ToInt32(errorCode);
-
                     }
-
                 }
             }
             catch (Exception ex)
             {
-
                 return null;
             }
             return objmodel;
@@ -144,7 +137,6 @@ namespace BillingSoftware.Controllers
             string errorCode = string.Empty;
             try
             {
-
                 using (SqlConnection con = new SqlConnection(Conn))
                 {
                     SqlParameter outErrorCode = new SqlParameter("@o_ErrorCode", SqlDbType.Int) { Direction = ParameterDirection.Output };
@@ -172,7 +164,6 @@ namespace BillingSoftware.Controllers
 
         [HttpGet]
         [ActionName("Get_MaxID_gst_master")]
-
         public List<GSTMasterModel> Get_MaxID_gst_master(int companyid)
         {
             DataTable dtData = null;

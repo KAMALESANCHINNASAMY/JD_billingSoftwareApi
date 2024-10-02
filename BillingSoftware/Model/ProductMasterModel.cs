@@ -12,5 +12,7 @@
         public string unit_name { get; set; }
         public string hsn_number { get; set; }
         public string gst_percentage { get; set; }
+        public decimal sqty { get; set; }
+        public decimal rqty { get; set; }
     }
 }
