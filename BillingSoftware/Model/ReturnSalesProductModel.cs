@@ -6,7 +6,9 @@ namespace BillingSoftware.Model
     {
         public int returnid { get; set; }
         public int entryid { get; set; }
+        public int purchaseid { get; set; }
         public int customerid { get; set; }
+        public int third_partyid { get; set; }
         public string bill_no { get; set; }
         public string return_no { get; set; }
         public string return_date { get; set; }
@@ -14,6 +16,7 @@ namespace BillingSoftware.Model
         public int companyid { get; set; }
         public int cuid { get; set; }
         public string customer_name { get; set; }
+        public string party_name { get; set; }
         public string total { get; set; }
         public List<NestedReturnSalesProductModel> salesProduct_nested { get; set; }
     }
@@ -22,6 +25,8 @@ namespace BillingSoftware.Model
     {
         public int return_n_id { get; set; }
         public int returnid { get; set; }
+        public int purchaseid { get; set; }
+        public int purchase_n_id { get; set; }
         public int entry_n_id { get; set; }
         public int productid { get; set; }
         public string gst_percentage { get; set; }

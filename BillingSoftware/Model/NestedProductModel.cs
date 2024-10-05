@@ -15,5 +15,7 @@
         public decimal pa_qty { get; set; }
         public decimal re_qty { get; set; }
         public decimal total_s_qty { get; set; }
+        public decimal av_a_qty { get; set; }
+        public decimal av_qty { get; set; }
     }
 }
