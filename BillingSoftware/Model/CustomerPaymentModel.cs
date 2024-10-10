@@ -14,7 +14,7 @@ namespace BillingSoftware.Model
         public string cheque_no { get; set; }
         public string c_date { get; set; }
         public string c_amount { get; set; }
-
+        public int bankid { get; set; }
         public string si_code { get; set; }
 
         public string ref_code { get; set; }
@@ -48,6 +48,7 @@ namespace BillingSoftware.Model
         public string deduction_amount { get; set; }
         public bool gst { get; set;}
         public bool non_gst { get; set; }
+        public bool isbill { get; set; }
         public bool isbal { get; set; }
         public decimal tot { get; set; }
         public string retTot { get; set; }

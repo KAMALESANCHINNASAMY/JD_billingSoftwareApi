@@ -23,6 +23,7 @@ namespace BillingSoftware.Model
         public int advanceid { get; set; }
         public int companyid { get; set; }
         public int cuid { get; set; }
+        public int bankid { get; set; }
         public List<ThirdPartyPaymentNestedModel> thirdPartyPayment_nested { get; set; }
     }
 
@@ -40,6 +41,7 @@ namespace BillingSoftware.Model
         public bool gst { get; set; }
         public bool non_gst { get; set; }
         public bool isbal { get; set; }
+        public bool isbill { get; set; }
         public decimal tot { get; set; }
         public string retTot { get; set; }
         public decimal totalcal { get; set; }

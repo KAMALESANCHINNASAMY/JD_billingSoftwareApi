@@ -13,9 +13,10 @@
         public string hsn_number { get; set; }
         public string gst_percentage { get; set; }
         public decimal pa_qty { get; set; }
-        public decimal re_qty { get; set; }
-        public decimal total_s_qty { get; set; }
+        public decimal ra_qty { get; set; }        
         public decimal av_a_qty { get; set; }
         public decimal av_qty { get; set; }
+        public decimal sa_qty { get; set; }
+        public decimal sra_qty { get; set; }
     }
 }
