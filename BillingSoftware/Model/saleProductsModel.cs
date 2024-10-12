@@ -27,6 +27,7 @@ namespace BillingSoftware.Model
         public int purchaseid { get; set; }
         public int purchase_n_id { get; set; }
         public int productid { get; set; }
+        public string product_name { get; set; }
         public string gst_percentage { get; set; }
         public string price { get; set; }
         public string discount { get; set; }

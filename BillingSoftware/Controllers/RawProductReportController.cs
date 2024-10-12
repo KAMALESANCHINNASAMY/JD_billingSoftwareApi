@@ -28,7 +28,7 @@ namespace BillingSoftware.Controllers
         }
 
         [HttpGet]
-        public List<NestedProductModel> get_stock_by_raw_product(int companyid)
+        public List<NestedProductModel> get_raw_product_byid(int companyid, int supplierid, string fromdate, string todate)
         {
             DataTable dtData = null;
             List<NestedProductModel> mItems = new List<NestedProductModel>();
@@ -38,9 +38,12 @@ namespace BillingSoftware.Controllers
             {
                 using (SqlConnection con = new SqlConnection(Conn))
                 {
-                    SqlCommand cmd = new SqlCommand("get_stock_by_raw_product", con);
+                    SqlCommand cmd = new SqlCommand("get_raw_product_byid", con);
                     cmd.Parameters.AddWithValue("companyid", companyid);
-                    cmd.CommandType = CommandType.StoredProcedure;                    
+                    cmd.Parameters.AddWithValue("supplierid", supplierid);
+                    cmd.Parameters.AddWithValue("fromdate", fromdate);
+                    cmd.Parameters.AddWithValue("todate", todate);
+                    cmd.CommandType = CommandType.StoredProcedure;
                     con.Open();
                     adapter = new SqlDataAdapter(cmd);
                     dtData = new DataTable();

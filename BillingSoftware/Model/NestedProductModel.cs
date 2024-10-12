@@ -18,5 +18,12 @@
         public decimal av_qty { get; set; }
         public decimal sa_qty { get; set; }
         public decimal sra_qty { get; set; }
+        public int supplierid { get; set; }
+        public string supplier_name { get; set; }
+        public string date { get; set; }
+        public string bill_no { get; set; }
+        public string n_productids { get; set; }
+        public string qtys { get; set; }
+        public string a_qtys { get; set; }
     }
 }
