@@ -139,6 +139,8 @@ namespace BillingSoftware.Controllers
                         cmd.Parameters.AddWithValue("@third_partyid", newMat.third_partyid);
                         cmd.Parameters.AddWithValue("@date", newMat.date);
                         cmd.Parameters.AddWithValue("@bill_no", newMat.bill_no);
+                        cmd.Parameters.AddWithValue("@productid", newMat.productid);
+                        cmd.Parameters.AddWithValue("@qty", newMat.qty);
                         cmd.Parameters.AddWithValue("@cuid", newMat.cuid);
                         cmd.Parameters.Add(outErrorCode);
                         cmd.Parameters.Add(outErrorDesc);
@@ -173,6 +175,8 @@ namespace BillingSoftware.Controllers
                         cmd.Parameters.AddWithValue("@third_partyid", newMat.third_partyid);
                         cmd.Parameters.AddWithValue("@date", newMat.date);
                         cmd.Parameters.AddWithValue("@bill_no", newMat.bill_no);
+                        cmd.Parameters.AddWithValue("@productid", newMat.productid);
+                        cmd.Parameters.AddWithValue("@qty", newMat.qty);
                         cmd.Parameters.AddWithValue("@companyid", newMat.companyid);
                         cmd.Parameters.AddWithValue("@cuid", newMat.cuid);
                         cmd.Parameters.Add(outErrorCode);
@@ -234,7 +238,7 @@ namespace BillingSoftware.Controllers
                     errorCode = outErrorCode.Value.ToString();
                     errorDesc = outErrorDesc.Value.ToString();
                     objmodel.status = errorDesc;
-                    objmodel.recordid = Convert.ToInt32(supplyid);
+                    objmodel.recordid = Convert.ToInt32(errorCode);
                 }
             }
             catch (Exception ex)

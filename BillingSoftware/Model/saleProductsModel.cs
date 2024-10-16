@@ -18,6 +18,8 @@ namespace BillingSoftware.Model
         public string customer_name { get; set; }
         public string party_name { get; set; }
         public string gst_in { get; set; }
+        public string productids { get; set; }
+        public string qtys { get; set; }
         public List<saleProductsModelNested> sale_nested { get; set; }
     }
     public class saleProductsModelNested
@@ -29,6 +31,7 @@ namespace BillingSoftware.Model
         public int productid { get; set; }
         public string product_name { get; set; }
         public string gst_percentage { get; set; }
+        public string hsn_number { get; set; }
         public string price { get; set; }
         public string discount { get; set; }
         public string qty { get; set; }

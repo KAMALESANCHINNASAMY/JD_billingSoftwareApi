@@ -14,6 +14,8 @@ namespace BillingSoftware.Model
         public int companyid { get; set; }
         public int cuid { get; set; }
         public string party_name { get; set; }
+        public int productid { get; set; }
+        public string qty { get; set; }
         public List<SupplyThirdPartyModelNested> supply_nested { get; set; }
     }
     public class SupplyThirdPartyModelNested

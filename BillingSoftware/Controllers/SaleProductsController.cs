@@ -254,7 +254,7 @@ namespace BillingSoftware.Controllers
                     errorCode = outErrorCode.Value.ToString();
                     errorDesc = outErrorDesc.Value.ToString();
                     objmodel.status = errorDesc;
-                    objmodel.recordid = Convert.ToInt32(entryid);
+                    objmodel.recordid = Convert.ToInt32(errorCode);
                 }
             }
             catch (Exception ex)
