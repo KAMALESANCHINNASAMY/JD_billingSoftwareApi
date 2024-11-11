@@ -13,6 +13,9 @@ namespace BillingSoftware.Model
         public string bill_no { get; set; }
         public string credit_days { get; set; }
         public string total { get; set; }
+        public string roundof { get; set; }
+        public string net_amount { get; set; }
+        public string action { get; set; }
         public int cuid { get; set; }
         public int companyid { get; set; }
         public string customer_name { get; set; }
@@ -20,6 +23,7 @@ namespace BillingSoftware.Model
         public string gst_in { get; set; }
         public string productids { get; set; }
         public string qtys { get; set; }
+        public string product_name { get; set; }
         public List<saleProductsModelNested> sale_nested { get; set; }
     }
     public class saleProductsModelNested
@@ -35,8 +39,7 @@ namespace BillingSoftware.Model
         public string price { get; set; }
         public string discount { get; set; }
         public string qty { get; set; }
-        public string total { get; set; }
-        public string re_amount { get; set; }
+        public string total { get; set; }        
         public string cgst_amount { get; set; }
         public string sgst_amount { get; set; }
         public string igst_amount { get; set; }
