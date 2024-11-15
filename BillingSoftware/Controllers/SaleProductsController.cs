@@ -140,6 +140,7 @@ namespace BillingSoftware.Controllers
                         cmd.Parameters.AddWithValue("@date", newMat.date);
                         cmd.Parameters.AddWithValue("@bill_no", newMat.bill_no);
                         cmd.Parameters.AddWithValue("@credit_days", newMat.credit_days);
+                        cmd.Parameters.AddWithValue("@narration", newMat.narration);
                         cmd.Parameters.AddWithValue("@total", newMat.total);
                         cmd.Parameters.AddWithValue("@roundof", newMat.roundof);
                         cmd.Parameters.AddWithValue("@net_amount", newMat.net_amount);
@@ -186,6 +187,7 @@ namespace BillingSoftware.Controllers
                         cmd.Parameters.AddWithValue("@date", newMat.date);
                         cmd.Parameters.AddWithValue("@bill_no", newMat.bill_no);
                         cmd.Parameters.AddWithValue("@credit_days", newMat.credit_days);
+                        cmd.Parameters.AddWithValue("@narration", newMat.narration);
                         cmd.Parameters.AddWithValue("@total", newMat.total);
                         cmd.Parameters.AddWithValue("@roundof", newMat.roundof);
                         cmd.Parameters.AddWithValue("@net_amount", newMat.net_amount);

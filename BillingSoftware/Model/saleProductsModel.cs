@@ -24,6 +24,7 @@ namespace BillingSoftware.Model
         public string productids { get; set; }
         public string qtys { get; set; }
         public string product_name { get; set; }
+        public string narration { get; set; }
         public List<saleProductsModelNested> sale_nested { get; set; }
     }
     public class saleProductsModelNested
