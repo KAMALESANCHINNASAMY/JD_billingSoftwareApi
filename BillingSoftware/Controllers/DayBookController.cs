@@ -28,7 +28,7 @@ namespace BillingSoftware.Controllers
         }
 
         [HttpGet]
-        public List<DayBookModel> get_daybook_bydate(int companyid, string fromdate, string todate)
+        public List<DayBookModel> get_daybook_bydate(int companyid, string fromdate, string todate, int bankid)
         {
             DataTable dtData = null;
             List<DayBookModel> mItems = new List<DayBookModel>();
@@ -38,18 +38,38 @@ namespace BillingSoftware.Controllers
             {
                 using (SqlConnection con = new SqlConnection(Conn))
                 {
-                    SqlCommand cmd = new SqlCommand("get_daybook_bydate", con);
-                    cmd.Parameters.AddWithValue("@companyid", companyid);
-                    cmd.Parameters.AddWithValue("@fromdate", fromdate);
-                    cmd.Parameters.AddWithValue("@todate", todate);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    con.Open();
-                    adapter = new SqlDataAdapter(cmd);
-                    dtData = new DataTable();
-                    adapter.Fill(dtData);
-                    if (dtData.Rows.Count > 0)
+                    if (bankid == 0)
                     {
-                        mItems = Helper.ConvertToList<DayBookModel>(dtData);
+                        SqlCommand cmd = new SqlCommand("get_daybook_bydate", con);
+                        cmd.Parameters.AddWithValue("@companyid", companyid);
+                        cmd.Parameters.AddWithValue("@fromdate", fromdate);
+                        cmd.Parameters.AddWithValue("@todate", todate);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        con.Open();
+                        adapter = new SqlDataAdapter(cmd);
+                        dtData = new DataTable();
+                        adapter.Fill(dtData);
+                        if (dtData.Rows.Count > 0)
+                        {
+                            mItems = Helper.ConvertToList<DayBookModel>(dtData);
+                        }
+                    }
+                    else
+                    {
+                        SqlCommand cmd = new SqlCommand("get_daybook_bybankid", con);
+                        cmd.Parameters.AddWithValue("@companyid", companyid);
+                        cmd.Parameters.AddWithValue("@fromdate", fromdate);
+                        cmd.Parameters.AddWithValue("@todate", todate);
+                        cmd.Parameters.AddWithValue("@bankid", bankid);
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        con.Open();
+                        adapter = new SqlDataAdapter(cmd);
+                        dtData = new DataTable();
+                        adapter.Fill(dtData);
+                        if (dtData.Rows.Count > 0)
+                        {
+                            mItems = Helper.ConvertToList<DayBookModel>(dtData);
+                        }
                     }
                 }
             }
