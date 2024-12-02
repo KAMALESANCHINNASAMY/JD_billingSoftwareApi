@@ -143,6 +143,9 @@ namespace BillingSoftware.Controllers
                         cmd.Parameters.AddWithValue("@bill_no", newMat.bill_no);
                         cmd.Parameters.AddWithValue("@credit_days", newMat.credit_days);
                         cmd.Parameters.AddWithValue("@total", newMat.total);
+                        cmd.Parameters.AddWithValue("@roundof", newMat.roundof);
+                        cmd.Parameters.AddWithValue("@net_amount", newMat.net_amount);
+                        cmd.Parameters.AddWithValue("@action", newMat.action);
                         cmd.Parameters.AddWithValue("@cuid", newMat.cuid);
                         cmd.Parameters.Add(outErrorCode);
                         cmd.Parameters.Add(outErrorDesc);
@@ -168,7 +171,6 @@ namespace BillingSoftware.Controllers
                                     cmd1.Parameters.AddWithValue("@discount", assign.discount);
                                     cmd1.Parameters.AddWithValue("@qty", assign.qty);
                                     cmd1.Parameters.AddWithValue("@total", assign.total);
-                                    cmd1.Parameters.AddWithValue("@re_amount", assign.re_amount);
                                     cmd1.Parameters.AddWithValue("@cgst_amount", assign.cgst_amount);
                                     cmd1.Parameters.AddWithValue("@sgst_amount", assign.sgst_amount);
                                     cmd1.Parameters.AddWithValue("@igst_amount", assign.igst_amount);
@@ -189,6 +191,9 @@ namespace BillingSoftware.Controllers
                         cmd.Parameters.AddWithValue("@bill_no", newMat.bill_no);
                         cmd.Parameters.AddWithValue("@credit_days", newMat.credit_days);
                         cmd.Parameters.AddWithValue("@total", newMat.total);
+                        cmd.Parameters.AddWithValue("@roundof", newMat.roundof);
+                        cmd.Parameters.AddWithValue("@net_amount", newMat.net_amount);
+                        cmd.Parameters.AddWithValue("@action", newMat.action);
                         cmd.Parameters.AddWithValue("@cuid", newMat.cuid);
                         cmd.Parameters.AddWithValue("@companyid", newMat.companyid);
                         cmd.Parameters.Add(outErrorCode);
@@ -215,7 +220,6 @@ namespace BillingSoftware.Controllers
                                     cmd1.Parameters.AddWithValue("@discount", assign.discount);
                                     cmd1.Parameters.AddWithValue("@qty", assign.qty);
                                     cmd1.Parameters.AddWithValue("@total", assign.total);
-                                    cmd1.Parameters.AddWithValue("@re_amount", assign.re_amount);
                                     cmd1.Parameters.AddWithValue("@cgst_amount", assign.cgst_amount);
                                     cmd1.Parameters.AddWithValue("@sgst_amount", assign.sgst_amount);
                                     cmd1.Parameters.AddWithValue("@igst_amount", assign.igst_amount);

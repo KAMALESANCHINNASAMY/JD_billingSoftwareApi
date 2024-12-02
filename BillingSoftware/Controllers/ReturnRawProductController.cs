@@ -175,6 +175,9 @@ namespace BillingSoftware.Controllers
                         cmd.Parameters.AddWithValue("@return_no", newMat.return_no);
                         cmd.Parameters.AddWithValue("@return_date", newMat.return_date);
                         cmd.Parameters.AddWithValue("@return_total", newMat.return_total);
+                        cmd.Parameters.AddWithValue("@return_action", newMat.return_action);
+                        cmd.Parameters.AddWithValue("@return_roundof", newMat.return_roundof);
+                        cmd.Parameters.AddWithValue("@return_net_amount", newMat.return_net_amount);
                         cmd.Parameters.AddWithValue("@cuid", newMat.cuid);
                         cmd.Parameters.Add(outErrorCode);
                         cmd.Parameters.Add(outErrorDesc);
@@ -203,9 +206,7 @@ namespace BillingSoftware.Controllers
                                     cmd1.Parameters.AddWithValue("@qty", assign.qty);
                                     cmd1.Parameters.AddWithValue("@ret_qty", assign.ret_qty);
                                     cmd1.Parameters.AddWithValue("@total", assign.total);
-                                    cmd1.Parameters.AddWithValue("@ret_total", assign.ret_total);
-                                    cmd1.Parameters.AddWithValue("@re_amount", assign.re_amount);
-                                    cmd1.Parameters.AddWithValue("@ret_re_amount", assign.ret_re_amount);
+                                    cmd1.Parameters.AddWithValue("@ret_total", assign.ret_total);                                    
                                     cmd1.Parameters.AddWithValue("@cgst_amount", assign.cgst_amount);
                                     cmd1.Parameters.AddWithValue("@ret_cgst_amount", assign.ret_cgst_amount);
                                     cmd1.Parameters.AddWithValue("@sgst_amount", assign.sgst_amount);
@@ -230,6 +231,9 @@ namespace BillingSoftware.Controllers
                         cmd.Parameters.AddWithValue("@return_no", newMat.return_no);
                         cmd.Parameters.AddWithValue("@return_date", newMat.return_date);
                         cmd.Parameters.AddWithValue("@return_total", newMat.return_total);
+                        cmd.Parameters.AddWithValue("@return_action", newMat.return_action);
+                        cmd.Parameters.AddWithValue("@return_roundof", newMat.return_roundof);
+                        cmd.Parameters.AddWithValue("@return_net_amount", newMat.return_net_amount);
                         cmd.Parameters.AddWithValue("@cuid", newMat.cuid);
                         cmd.Parameters.AddWithValue("@companyid", newMat.companyid);
                         cmd.Parameters.Add(outErrorCode);
@@ -259,9 +263,7 @@ namespace BillingSoftware.Controllers
                                     cmd1.Parameters.AddWithValue("@qty", assign.qty);
                                     cmd1.Parameters.AddWithValue("@ret_qty", assign.ret_qty);
                                     cmd1.Parameters.AddWithValue("@total", assign.total);
-                                    cmd1.Parameters.AddWithValue("@ret_total", assign.ret_total);
-                                    cmd1.Parameters.AddWithValue("@re_amount", assign.re_amount);
-                                    cmd1.Parameters.AddWithValue("@ret_re_amount", assign.ret_re_amount);
+                                    cmd1.Parameters.AddWithValue("@ret_total", assign.ret_total);                                   
                                     cmd1.Parameters.AddWithValue("@cgst_amount", assign.cgst_amount);
                                     cmd1.Parameters.AddWithValue("@ret_cgst_amount", assign.ret_cgst_amount);
                                     cmd1.Parameters.AddWithValue("@sgst_amount", assign.sgst_amount);

@@ -11,6 +11,9 @@ namespace BillingSoftware.Model
         public string return_no { get; set; }
         public string return_date { get; set; }
         public string return_total { get; set; }
+        public string return_action { get; set; }
+        public string return_roundof { get; set; }
+        public string return_net_amount { get; set; }
         public int companyid { get; set; }
         public int cuid { get; set; }
         public string supplier_name { get; set; }
@@ -33,8 +36,6 @@ namespace BillingSoftware.Model
         public string ret_qty { get; set; }
         public string total { get; set; }
         public string ret_total { get; set; }
-        public string re_amount { get; set; }
-        public string ret_re_amount { get; set; }
         public string cgst_amount { get; set; }
         public string ret_cgst_amount { get; set; }
         public string sgst_amount { get; set; }
