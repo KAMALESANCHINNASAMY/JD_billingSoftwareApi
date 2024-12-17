@@ -55,37 +55,6 @@ namespace BillingSoftware.Controllers
             return mItems;
         }
 
-        [HttpGet]
-        public List<customerAdvanceModel> get_customer_advance(int customerid)
-        {
-            DataTable dtData = null;
-            List<customerAdvanceModel> mItems = new List<customerAdvanceModel>();
-            SqlDataAdapter adapter = null;
-            string jsonData = string.Empty;
-            try
-            {
-                using (SqlConnection con = new SqlConnection(Conn))
-                {
-                    SqlCommand cmd = new SqlCommand("get_customer_advance", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@customerid", customerid);
-                    con.Open();
-                    adapter = new SqlDataAdapter(cmd);
-                    dtData = new DataTable();
-                    adapter.Fill(dtData);
-                    if (dtData.Rows.Count > 0)
-                    {
-                        mItems = Helper.ConvertToList<customerAdvanceModel>(dtData);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-            return mItems;
-        }
-
         [HttpPost]
         [ActionName("Insert_customer_master")]
         public ResponseModel Insert_customer_master(CustomerMasterModel newObj)
@@ -122,39 +91,6 @@ namespace BillingSoftware.Controllers
                         errorDesc = outErrorDesc.Value.ToString();
                         objmodel.status = errorDesc;
                         objmodel.recordid = Convert.ToInt32(newObj.customerid);
-
-                        if (objmodel.status == "Saved successfully")
-                        {
-                            foreach (var advan in newObj.customeradvance)
-                            {
-                                using (SqlConnection con11 = new SqlConnection(Conn))
-                                {
-                                    if (advan.advanceid > 0)
-                                    {
-                                        SqlCommand cmd1 = new SqlCommand("update_customer_advance", con11);
-                                        cmd1.CommandType = CommandType.StoredProcedure;
-                                        cmd1.Parameters.AddWithValue("@advanceid", advan.advanceid);
-                                        cmd1.Parameters.AddWithValue("@customerid", newObj.customerid);
-                                        cmd1.Parameters.AddWithValue("@date", advan.date);
-                                        cmd1.Parameters.AddWithValue("@advance_amount", advan.advance_amount);
-                                        cmd1.Parameters.AddWithValue("@description", advan.description);
-                                        con11.Open();
-                                        cmd1.ExecuteNonQuery();
-                                    }
-                                    else
-                                    {
-                                        SqlCommand cmd1 = new SqlCommand("insert_customer_advance", con11);
-                                        cmd1.CommandType = CommandType.StoredProcedure;
-                                        cmd1.Parameters.AddWithValue("@customerid", objmodel.recordid);
-                                        cmd1.Parameters.AddWithValue("@date", advan.date);
-                                        cmd1.Parameters.AddWithValue("@advance_amount", advan.advance_amount);
-                                        cmd1.Parameters.AddWithValue("@description", advan.description);
-                                        con11.Open();
-                                        cmd1.ExecuteNonQuery();
-                                    }
-                                }
-                            }
-                        }
                     }
                     else
                     {
@@ -178,24 +114,6 @@ namespace BillingSoftware.Controllers
                         errorDesc = outErrorDesc.Value.ToString();
                         objmodel.status = errorDesc;
                         objmodel.recordid = Convert.ToInt32(errorCode);
-
-                        if (objmodel.status == "Saved successfully")
-                        {
-                            foreach (var advan in newObj.customeradvance)
-                            {
-                                using (SqlConnection con11 = new SqlConnection(Conn))
-                                {
-                                    SqlCommand cmd1 = new SqlCommand("insert_customer_advance", con11);
-                                    cmd1.CommandType = CommandType.StoredProcedure;
-                                    cmd1.Parameters.AddWithValue("@customerid", objmodel.recordid);
-                                    cmd1.Parameters.AddWithValue("@date", advan.date);
-                                    cmd1.Parameters.AddWithValue("@advance_amount", advan.advance_amount);
-                                    cmd1.Parameters.AddWithValue("@description", advan.description);
-                                    con11.Open();
-                                    cmd1.ExecuteNonQuery();
-                                }
-                            }
-                        }
                     }
                 }
             }

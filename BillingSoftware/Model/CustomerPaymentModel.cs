@@ -15,6 +15,9 @@ namespace BillingSoftware.Model
         public string c_date { get; set; }
         public string c_amount { get; set; }
         public int bankid { get; set; }
+        public string bank_name { get; set; }
+        public string description { get; set; }
+        public string amount { get; set; }
         public string si_code { get; set; }
 
         public string ref_code { get; set; }

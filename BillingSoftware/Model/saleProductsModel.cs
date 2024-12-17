@@ -45,5 +45,7 @@ namespace BillingSoftware.Model
         public string sgst_amount { get; set; }
         public string igst_amount { get; set; }
         public string net_total { get; set; }
+        public string party_name { get; set; }
+        public string date { get; set; }
     }
 }

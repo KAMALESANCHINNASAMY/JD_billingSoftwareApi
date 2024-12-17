@@ -77,6 +77,7 @@ namespace BillingSoftware.Controllers
                         cmd.Parameters.AddWithValue("@ac_holder_name", newObj.ac_holder_name);
                         cmd.Parameters.AddWithValue("@ac_no", newObj.ac_no);
                         cmd.Parameters.AddWithValue("@ifsc_code", newObj.ifsc_code);
+                        cmd.Parameters.AddWithValue("@balance", newObj.balance);
                         cmd.Parameters.AddWithValue("@companyid", newObj.companyid);
                         cmd.Parameters.AddWithValue("@cuid", newObj.cuid);
                         cmd.Parameters.Add(outErrorCode);
@@ -96,6 +97,7 @@ namespace BillingSoftware.Controllers
                         cmd.Parameters.AddWithValue("@ac_holder_name", newObj.ac_holder_name);
                         cmd.Parameters.AddWithValue("@ac_no", newObj.ac_no);
                         cmd.Parameters.AddWithValue("@ifsc_code", newObj.ifsc_code);
+                        cmd.Parameters.AddWithValue("@balance", newObj.balance);
                         cmd.Parameters.AddWithValue("@companyid", newObj.companyid);
                         cmd.Parameters.AddWithValue("@cuid", newObj.cuid);
                         cmd.Parameters.Add(outErrorCode);

@@ -7,6 +7,7 @@
         public string ac_holder_name { get; set; }
         public string ac_no { get; set; }
         public string ifsc_code { get; set; }
+        public string balance { get; set; }
         public int companyid { get; set; }
         public int cuid { get; set; }
     }

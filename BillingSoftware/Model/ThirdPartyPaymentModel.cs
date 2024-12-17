@@ -24,6 +24,9 @@ namespace BillingSoftware.Model
         public int companyid { get; set; }
         public int cuid { get; set; }
         public int bankid { get; set; }
+        public string bank_name { get; set; }
+        public string amount { get; set; }
+        public string description { get; set; }
         public List<ThirdPartyPaymentNestedModel> thirdPartyPayment_nested { get; set; }
     }
 

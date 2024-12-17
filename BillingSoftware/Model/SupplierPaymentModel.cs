@@ -17,6 +17,9 @@ namespace BillingSoftware.Model
         public int advanceid { get; set; }
         public string supplier_bill_no { get; set; }
         public int bankid { get; set; }
+        public string bank_name { get; set; }
+        public string amount { get; set; }
+        public string description { get; set; }
         public string bill_no { get; set; }
         public string supplier_name { get; set; }
         public string total { get; set; }

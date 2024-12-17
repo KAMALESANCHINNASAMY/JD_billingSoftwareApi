@@ -16,16 +16,5 @@ namespace BillingSoftware.Model
         public string shipping_address { get; set; }
         public int companyid { get; set; }
         public int cuid { get; set; }
-        public List<customerAdvanceModel> customeradvance { get; set; }
-    }
-
-    public class customerAdvanceModel
-    {
-        public int customerid { get; set; }
-        public int advanceid { get; set; }
-        public string date { get; set; }
-        public string advance_amount { get; set; }
-        public string aval_addvance { get; set; }
-        public string description { get; set; }
     }
 }

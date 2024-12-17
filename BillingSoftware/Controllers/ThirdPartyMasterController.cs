@@ -53,38 +53,7 @@ namespace BillingSoftware.Controllers
 
             }
             return mItems;
-        }
-
-        [HttpGet]
-        public List<ThirdPartyAdvanceModel> get_thirdparty_advance(int third_partyid)
-        {
-            DataTable dtData = null;
-            List<ThirdPartyAdvanceModel> mItems = new List<ThirdPartyAdvanceModel>();
-            SqlDataAdapter adapter = null;
-            string jsonData = string.Empty;
-            try
-            {
-                using (SqlConnection con = new SqlConnection(Conn))
-                {
-                    SqlCommand cmd = new SqlCommand("get_thirdparty_advance", con);
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@third_partyid", third_partyid);
-                    con.Open();
-                    adapter = new SqlDataAdapter(cmd);
-                    dtData = new DataTable();
-                    adapter.Fill(dtData);
-                    if (dtData.Rows.Count > 0)
-                    {
-                        mItems = Helper.ConvertToList<ThirdPartyAdvanceModel>(dtData);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-
-            }
-            return mItems;
-        }
+        }        
 
         [HttpPost]
         [ActionName("Insert_third_party_master")]
@@ -121,40 +90,7 @@ namespace BillingSoftware.Controllers
                         errorCode = outErrorCode.Value.ToString();
                         errorDesc = outErrorDesc.Value.ToString();
                         objmodel.status = errorDesc;
-                        objmodel.recordid = Convert.ToInt32(newObj.third_partyid);
-
-                        if (objmodel.status == "Saved successfully")
-                        {
-                            foreach (var advan in newObj.thirdpartyadvance)
-                            {
-                                using (SqlConnection con11 = new SqlConnection(Conn))
-                                {
-                                    if (advan.advanceid > 0)
-                                    {
-                                        SqlCommand cmd1 = new SqlCommand("update_thirdparty_advance", con11);
-                                        cmd1.CommandType = CommandType.StoredProcedure;
-                                        cmd1.Parameters.AddWithValue("@advanceid", advan.advanceid);
-                                        cmd1.Parameters.AddWithValue("@third_partyid", newObj.third_partyid);
-                                        cmd1.Parameters.AddWithValue("@date", advan.date);
-                                        cmd1.Parameters.AddWithValue("@advance_amount", advan.advance_amount);
-                                        cmd1.Parameters.AddWithValue("@description", advan.description);
-                                        con11.Open();
-                                        cmd1.ExecuteNonQuery();
-                                    }
-                                    else
-                                    {
-                                        SqlCommand cmd1 = new SqlCommand("insert_thirdparty_advance", con11);
-                                        cmd1.CommandType = CommandType.StoredProcedure;
-                                        cmd1.Parameters.AddWithValue("@third_partyid", objmodel.recordid);
-                                        cmd1.Parameters.AddWithValue("@date", advan.date);
-                                        cmd1.Parameters.AddWithValue("@advance_amount", advan.advance_amount);
-                                        cmd1.Parameters.AddWithValue("@description", advan.description);
-                                        con11.Open();
-                                        cmd1.ExecuteNonQuery();
-                                    }
-                                }
-                            }
-                        }
+                        objmodel.recordid = Convert.ToInt32(newObj.third_partyid);                        
                     }
                     else
                     {
@@ -177,25 +113,7 @@ namespace BillingSoftware.Controllers
                         errorCode = outErrorCode.Value.ToString();
                         errorDesc = outErrorDesc.Value.ToString();
                         objmodel.status = errorDesc;
-                        objmodel.recordid = Convert.ToInt32(errorCode);
-
-                        if (objmodel.status == "Saved successfully")
-                        {
-                            foreach (var advan in newObj.thirdpartyadvance)
-                            {
-                                using (SqlConnection con11 = new SqlConnection(Conn))
-                                {
-                                    SqlCommand cmd1 = new SqlCommand("insert_thirdparty_advance", con11);
-                                    cmd1.CommandType = CommandType.StoredProcedure;
-                                    cmd1.Parameters.AddWithValue("@third_partyid", objmodel.recordid);
-                                    cmd1.Parameters.AddWithValue("@date", advan.date);
-                                    cmd1.Parameters.AddWithValue("@advance_amount", advan.advance_amount);
-                                    cmd1.Parameters.AddWithValue("@description", advan.description);
-                                    con11.Open();
-                                    cmd1.ExecuteNonQuery();
-                                }
-                            }
-                        }
+                        objmodel.recordid = Convert.ToInt32(errorCode);                        
                     }
                 }
             }
