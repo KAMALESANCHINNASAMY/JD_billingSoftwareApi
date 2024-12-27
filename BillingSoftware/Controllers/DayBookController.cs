@@ -90,4 +90,5 @@ public class DayBookModel
     public string bank_name { get; set; }
     public decimal income { get; set; }
     public decimal expense { get; set; }
+    public string reference {get;set;} 
 }
