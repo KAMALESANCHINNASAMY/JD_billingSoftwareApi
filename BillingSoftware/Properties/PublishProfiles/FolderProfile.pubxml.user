@@ -4,8 +4,8 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
 -->
 <Project>
   <PropertyGroup>
-    <_PublishTargetUrl>F:\BillingSoftware\TST</_PublishTargetUrl>
-    <History>True|2024-09-19T07:20:17.2188841Z;</History>
+    <_PublishTargetUrl>F:\JDBillingSoftware\IIS12\API</_PublishTargetUrl>
+    <History>True|2024-12-27T11:43:49.4339194Z;</History>
     <LastFailureDetails />
   </PropertyGroup>
 </Project>
